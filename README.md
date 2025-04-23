@@ -28,7 +28,7 @@ public class Wellspent {
 
 ```
 
-## Initialization with API Key and Partner Name
+## Getting Started
 
 To initialize the SDK with your app properties, you can use the configuration structure. Reach out to us at 
 https://www.wellspent.so/demo for an API Key.
@@ -39,6 +39,7 @@ struct WellspentSDKProperties {
         apiKey: String,
         name: String,
         bundleId: String,
+        appGroupIdentifier: String,
         activity: String? = nil,
         successCriteria: String? = nil
     )
@@ -59,18 +60,29 @@ WellspentSDK requires you to add 3 separate app extension targets to your projec
 
 ###  Add app groups capability
 
-Add an app group with the name `group.co.wellspent` to all extension targets and your main app. 
+Add an app group with to all extension targets and your main app. 
 
 2. **Enable App Group**
    - Select the newly created extensions targets.
    - Go to `Signing & Capabilities`.
    - Click `+ Capability` and add `App Groups`.
-   - Add `group.co.wellspent`.
+   - Add `$(YOUR_APP_GROUP_NAME)`.
    - Repeat for all app extension targets and your main app
+   - Add the AppGroup to Info.plist for all extension targets
+
+   ```
+   <dict>
+	<key>AppGroup</key>
+	<string>YOUR_APPGROUP_NAME</string>
+    .....
+
+
+   </dict>
+   ```
 
 > [!CAUTION]
 > The Wellspent SDK will not work without the app extensions and their respective app groups
-> capability being set up. The app group name must be `group.co.wellspent` for every target.
+> capability being set up. The app group name must be added to the `Info.plist` for every extension target.
 
 ## Integrating the Swift SDK
 
@@ -88,7 +100,7 @@ dependencies: [
 1. Add the `Extension_DeviceActivityMonitor` framework to the `DeviceActivityMonitor` extension target
 2. Add the `Extension_ShieldAction` framework to the `ShieldActionExtension` target
 3. Add the `Extension_ShieldConfiguration` framework to the `ShieldConfigurationExtension` target
-4. Add the `WellspentSDK` framework to the main app target 
+4. Add the `Wellspent` framework to the main app target 
 
 #### Modify the DeviceActivityMonitorExtension code. 
 
@@ -130,7 +142,7 @@ further properties, using the initialize method.
 
 Doing this as early as possible ensures the SDK is ready for use.
 This method will fail synchronously if and only if the passed arguments are
-invalid. This method doesn't depend on network connectivity.
+invalid. This method does depend on network connectivity.
 
 ```swift
 import WellspentSDK
@@ -141,6 +153,7 @@ Task {
             apiKey: "INSERT-YOUR-API-KEY",
             name: "APP_NAME",
             bundleId: "APP_BUNDLE_ID",
+            appGroupIdentifier: "YOUR_APP_GROUP",
             activity: "APP_ACTIVITY e.g learning",
             successCriteria: "SUCCESS_CRITERIA e.g lesson"
         )
