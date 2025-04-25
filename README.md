@@ -1,14 +1,32 @@
 # Wellspent iOS SDK
 
-Welcome to the Wellspent iOS SDK, a powerful tool designed to enhance app retention and user engagement. By integrating our SDK, you can create meaningful experiences that encourage users to interact with your app more thoughtfully and consistently. Whether your app focuses on productivity, wellness, or personal development, Wellspent helps you foster deeper connections with your users by promoting intentional usage patterns. Empower your app to not only attract users but also keep them engaged, ensuring long-term value and satisfaction.
-
+Wellspent gives you the ability to block user's distracting  apps and redirect to your app until they complete a specific task in your app.
 
 ## Key Features
 
-* **Deep Linking Integration**: Facilitate smooth transitions between your app and distracting applications, enriching the user's journey towards building positive habits.
-* **Customizable User Goals**: Empower users to set and achieve personal goals, with the flexibility to define what success looks like in their journey of learning, meditation, or fitness.
-* **Dynamic Reward System**: Unlock new levels of user engagement by rewarding progress and encouraging consistent app usage through a thoughtful balance of incentives.
-* **Privacy-Centric Design**: Built from the ground up with user privacy and data protection in mind, ensuring compliance with GDPR, CCPA, and more, fostering trust and safety.
+**App Blocker**
+
+    It can block other apps that distract users—like games or social media—when they need to focus.
+
+    Example: If someone tries to open TikTok, it won’t open until they do something useful first.
+
+**Task Reminder**
+
+    Before letting users go back to their fun apps, it shows them a task they need to finish in your app.
+
+    Example: “Finish your 5-minute workout first!”
+
+**Smart Redirection**
+
+    If users try to open a blocked app, they’re sent back to your app instead.
+
+    It gently says, “Hey! Let’s get back to what matters.”
+
+**Customizable Tasks**
+
+    You can choose which tasks people need to complete before they get access to distractions.
+
+    Example: Finish a lesson, complete a quiz, write a journal entry—whatever your app wants!
 
 
 ## Getting Started
