@@ -3,6 +3,14 @@
 Welcome to the Wellspent iOS SDK, a powerful tool designed to enhance app retention and user engagement. By integrating our SDK, you can create meaningful experiences that encourage users to interact with your app more thoughtfully and consistently. Whether your app focuses on productivity, wellness, or personal development, Wellspent helps you foster deeper connections with your users by promoting intentional usage patterns. Empower your app to not only attract users but also keep them engaged, ensuring long-term value and satisfaction.
 
 
+## Key Features
+
+* **Deep Linking Integration**: Facilitate smooth transitions between your app and distracting applications, enriching the user's journey towards building positive habits.
+* **Customizable User Goals**: Empower users to set and achieve personal goals, with the flexibility to define what success looks like in their journey of learning, meditation, or fitness.
+* **Dynamic Reward System**: Unlock new levels of user engagement by rewarding progress and encouraging consistent app usage through a thoughtful balance of incentives.
+* **Privacy-Centric Design**: Built from the ground up with user privacy and data protection in mind, ensuring compliance with GDPR, CCPA, and more, fostering trust and safety.
+
+
 ## Getting Started
 
 This SDK is tailored for developers looking to make a positive impact on user habits through their iOS applications. Whether you're integrating Wellspent into an existing app or building from scratch, our straightforward setup process, detailed documentation, and dedicated support team will help you every step of the way.
@@ -207,4 +215,78 @@ By doing so, users regain access to their apps, reinforcing positive behavior an
 import WellspentSDK
 
 WellspentSDK.shared.completeDailyHabit()
+```
+
+
+## Customization
+
+#### Theming 
+
+To customise the colors and typography of the SDK screens, you need to create a class that conforms to `WellspentTheme` protocol. This protocol exposes the cutomisable UI elements on the SDK.
+
+You can initialize the Color values in various ways, including using hex values, named colors, RGB values etc.
+
+```swift
+    class CustomTheme: WellspentTheme {
+        var backgroundPrimaryDark: Color {
+            Color(hex: "#F6EDE4")
+        }
+
+        var backgroundPrimaryLight: Color {
+            Color(hex: "#2D2B2A")
+        }
+
+        var backgroundSecondaryDark: Color {
+            Color(hex: "#C0C0A5")
+        }
+
+        var backgroundSecondaryLight: Color {
+            Color(hex: "#FFFFFF")
+        }
+
+        var foregroundPrimaryLight: Color {
+            Color(hex: "#F9F0E7")
+        }
+
+        var foregroundPrimaryDark: Color {
+            Color(hex: "#E2DCD5")
+        }
+
+        var foregroundSecondaryLight: Color {
+            Color(hex: "#2CC05C")
+        }
+
+        var title: Font {
+            CustomFont.bold(with: 32)
+        }
+
+        var subtitle: Font {
+            CustomFont.bold(with: 20)
+        }
+
+        var body: Font {
+            CustomFont.bold(with: 16)
+        }
+
+        var footnote: Font {
+            CustomFont.medium(with: 12)
+        }
+    }
+```
+
+After implementing the custom theme, it can be applied using the following snippet
+
+```swift
+    Wellspent.apply(CustomTheme())
+```
+
+#### Localization and Copy 
+
+You may override specific strings by defining new values in your own `Localizable.strings` file. The full list of string resources that can be overridden is available.
+
+Once you have your translated strings defined, you can apply them by calling `Wellspent.apply()` with an instance of `WellspentLocalizableStrings`. `WellspentLocalizableStrings` requires the bundle and tablename of your strings.
+
+```swift
+let localizableStrings = WellspentLocalizableStrings(bundle: Bundle.main, tableName: "Localizable")
+Wellspent.apply(localizableStrings)
 ```
