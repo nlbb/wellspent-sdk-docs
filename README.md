@@ -45,7 +45,7 @@ This SDK is tailored for developers looking to make a positive impact on user ha
 
 public class Wellspent {
    static let shared: Wellspent
-   func configure(properties: WellspentSDKProperties) async -> Bool
+   func configure(properties: WellspentSDKProperties, trackingHandler: WellspentTrackingService? = nil) async -> Bool
    func start(onComplete: (() -> Void)? = nil, onDismiss: (() -> Void)? = nil)
    func showNudgeSettings(onFinish: (() -> Void)? = nil)
    func completeHabit()
@@ -182,9 +182,30 @@ Task {
             appGroupIdentifier: "YOUR_APP_GROUP",
             activity: "APP_ACTIVITY e.g learning",
             successCriteria: "SUCCESS_CRITERIA e.g lesson"
-        )
+        ),
+        trackingHandler: AnalyticsManager() // this is optional
     )
-} 
+}
+```
+
+#### Implement Tracking (Optional)
+
+To track user interactions and screen view (e.g. toggling nudge settings),
+implement the `WellspentTrackingService` protocol and pass an instance to `configure`.
+This allows you to forward analytics events to your provider (e.g., Firebase, Mixpanel).
+
+Create a class that conforms to `WellspentTrackingService` to receive analytics events.
+
+```swift
+class AnalyticsManager: WellspentTrackingService {
+    func trackScreenView(screenName: String, properties: [String: Any]?) {
+        // Forward screen view to your analytics provider
+    }
+    
+    func trackEvent(eventName: String, properties: [String: Any]?) {
+        // Forward event to your analytics provider
+    }
+}
 ```
 
 ### 3. User Onboarding
