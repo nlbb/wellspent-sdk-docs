@@ -10,7 +10,7 @@ Wellspent is a Screen Time SDK that allows you to lock distracting apps until yo
 ## Key Features
 * **Event-based App Blocking**: Full screen take-over that remind your users to use your app when they open distracting apps during their self-set schedule. Distracting apps are unlocked after a specific event in your app is fired (e.g. session started, session completed).
 
-* **Custom UI Control**: You can customize our pre-built UI to have full control over the visual style of the screen time feature in your app (onboarding screens, full-screen nudges, settings screens).
+* **Custom UI Control**: You can customize our pre-built UI to have full control over the visual style of the screen time feature in your app (onboarding screens, full-screen nudges, settings screen).
 
 * **Analytics**: Analyze adoption and nudging rates in real-time, either in your analytics provider or with our dashboards.
 
