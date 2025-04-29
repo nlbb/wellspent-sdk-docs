@@ -1,37 +1,22 @@
 # Wellspent iOS SDK
 
-Wellspent gives you the ability to block user's distracting  apps and redirect to your app until they complete a specific task in your app.
+Wellspent is a Screen Time SDK that allows you to lock distracting apps until your users complete a specific action in your app. It's plug-and-play and comes with pre-built UI screens you can customize to your IU. Most apps get their native screen time feature live within 2-3 days with the SDK.
+
+**Here's how**
+
+1. Configure Wellspent SDK, Wellspent's Screen Time SDK within your app.
+2. Wellspent SDK locks distracting apps until your users complete an action in your app, based on your SDK settings.
 
 ## Key Features
 
-**App Blocker**
+**Event-based App Blocking**
+Full screen take-over that remind your users to use your app when they open distracting apps. Unlocks distracting apps after a specific event in your app is fired (e.g. session started, session completed).
 
-    It can block other apps that distract users—like games or social media—when they need to focus.
+**Custom UI Control**
+You can customize our pre-built UI to have full control over the visual style of the screen time feature in your app.
 
-    Example: If someone tries to open TikTok, it won’t open until they do something useful first.
-
-**Task Reminder**
-
-    Before letting users go back to their fun apps, it shows them a task they need to finish in your app.
-
-    Example: “Finish your 5-minute workout first!”
-
-**Smart Redirection**
-
-    If users try to open a blocked app, they’re sent back to your app instead.
-
-    It gently says, “Hey! Let’s get back to what matters.”
-
-**Customizable Tasks**
-
-    You can choose which tasks people need to complete before they get access to distractions.
-
-    Example: Finish a lesson, complete a quiz, write a journal entry—whatever your app wants!
-
-
-## Getting Started
-
-This SDK is tailored for developers looking to make a positive impact on user habits through their iOS applications. Whether you're integrating Wellspent into an existing app or building from scratch, our straightforward setup process, detailed documentation, and dedicated support team will help you every step of the way.
+**Analytics**
+Analyze adoption and nudging rates in real-time, either in your analytics provider or with our dashboards.
 
 ## Prerequisites
 
