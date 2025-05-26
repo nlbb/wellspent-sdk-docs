@@ -93,10 +93,10 @@ Add an app group with to all extension targets and your main app.
 
 ## Request FamilyControls Entitlement(for distribution)
 
-With the app extensions created, request for the family controls entitlement(Distribution) from Apple. This is neccessary to go live in the appstore but not a requirement for local development.
+With the app extensions created, request for the Family Controls Entitlement (Distribution) from Apple. This is neccessary to go live in the App Store but not a requirement for local development.
 It's preferable to request the entitlement soon after creating the app extensions.
 
-[Follow our guide to request the Family Controls(Distribution) Entitlement.](https://wellspentsdk.notion.site/Apple-Family-Controls-Entitlement-Guide-1f15776f1ea380d1b047cd01fb0568b1?pvs=4)
+[Follow our guide to request the Family Controls (Distribution) Entitlement.](https://wellspentsdk.notion.site/Apple-Family-Controls-Entitlement-Guide-1f15776f1ea380d1b047cd01fb0568b1?pvs=4)
 
 ## Integrating the Swift SDK
 
