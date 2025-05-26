@@ -16,7 +16,7 @@ Wellspent is a Screen Time SDK that allows you to lock distracting apps until yo
 
 ## Prerequisites
 
-* iOS 16.0+ 
+* iOS 16.0+
 * Swift 5.9+
 * Xcode 16.0+
 
@@ -26,7 +26,7 @@ Wellspent is a Screen Time SDK that allows you to lock distracting apps until yo
 
 public class Wellspent {
    static let shared: Wellspent
-   func configure(properties: WellspentSDKProperties, trackingHandler: WellspentTrackingService? = nil) async -> Bool
+   func configure(properties: WellspentSDKProperties, theme: WellspentTheme? = nil, trackingHandler: WellspentTrackingService? = nil) async -> Bool
    func start(onComplete: (() -> Void)? = nil, onDismiss: (() -> Void)? = nil)
    func showNudgeSettings(onFinish: (() -> Void)? = nil)
    func completeHabit()
@@ -37,7 +37,7 @@ public class Wellspent {
 
 ## Getting Started
 
-To initialize the SDK with your app properties, you can use the configuration structure. Reach out to us at 
+To initialize the SDK with your app properties, you can use the configuration structure. Reach out to us at
 https://www.wellspent.so/demo for an API Key.
 
 ```swift
@@ -67,7 +67,7 @@ WellspentSDK requires you to add 3 separate app extension targets to your projec
 
 ###  Add app groups capability
 
-Add an app group with to all extension targets and your main app. 
+Add an app group with to all extension targets and your main app.
 
 2. **Enable App Group**
    - Select the newly created extensions targets.
@@ -94,9 +94,9 @@ Add an app group with to all extension targets and your main app.
 ## Request FamilyControls Entitlement (for distribution)
 
 With the app extensions created, request for the Family Controls Entitlement (Distribution) from Apple. This is neccessary to go live in the App Store but not a requirement for local development.
-It's preferable to request the entitlement soon after creating the app extensions. 
+It's preferable to request the entitlement soon after creating the app extensions.
 
-[Follow our guide to request the Family Controls (Distribution) Entitlement.] (https://wellspentsdk.notion.site/Apple-Family-Controls-Entitlement-Guide-1f15776f1ea380d1b047cd01fb0568b1?pvs=4)
+[Follow our guide to request the Family Controls (Distribution) Entitlement.](https://wellspentsdk.notion.site/Apple-Family-Controls-Entitlement-Guide-1f15776f1ea380d1b047cd01fb0568b1?pvs=4)
 
 ## Integrating the Swift SDK
 
@@ -114,12 +114,12 @@ dependencies: [
 1. Add the `Extension_DeviceActivityMonitor` framework to the `DeviceActivityMonitor` extension target
 2. Add the `Extension_ShieldAction` framework to the `ShieldActionExtension` target
 3. Add the `Extension_ShieldConfiguration` framework to the `ShieldConfigurationExtension` target
-4. Add the `Wellspent` framework to the main app target 
+4. Add the `Wellspent` framework to the main app target
 
-#### Modify the DeviceActivityMonitorExtension code. 
+#### Modify the DeviceActivityMonitorExtension code.
 
    - Open `DeviceActivityMonitorExtension.swift` and replace all existing code with snippet below
-  
+
   ```swift
     import Extension_DeviceActivityMonitor
 
@@ -127,10 +127,10 @@ dependencies: [
 
   ```
 
-#### Modify the ShieldActionExtension code. 
+#### Modify the ShieldActionExtension code.
 
    - Open `ShieldActionExtension.swift` and replace all existing code with snippet below
-  
+
   ```swift
     import Extension_ShieldAction
 
@@ -138,10 +138,10 @@ dependencies: [
   ```
 
 
-#### Modify the ShieldConfigurationExtension code. 
+#### Modify the ShieldConfigurationExtension code.
 
    - Open `ShieldConfigurationExtension.swift` and replace all existing code with snippet below.
-  
+
   ```swift
     import Extension_ShieldConfiguration
 
@@ -171,6 +171,7 @@ Task {
             activity: "APP_ACTIVITY e.g learning",
             successCriteria: "SUCCESS_CRITERIA e.g lesson"
         ),
+        theme: CustomTheme(), // this is optional
         trackingHandler: AnalyticsManager() // this is optional
     )
 }
@@ -189,7 +190,7 @@ class AnalyticsManager: WellspentTrackingService {
     func trackScreenView(screenName: String, properties: [String: Any]?) {
         // Forward screen view to your analytics provider
     }
-    
+
     func trackEvent(eventName: String, properties: [String: Any]?) {
         // Forward event to your analytics provider
     }
@@ -232,9 +233,9 @@ This method allows users to adjust their nudge schedules to better align with th
 
 ### 5. Propagating goal completion
 
-When users complete their daily habit, developers should call the `completeDailyHabit` method to unlock the apps. 
+When users complete their daily habit, developers should call the `completeDailyHabit` method to unlock the apps.
 
-This action notifies the Wellspent that the user's daily goal has been achieved, triggering updates to ensure the intervention mechanism reflects the completion status. 
+This action notifies the Wellspent that the user's daily goal has been achieved, triggering updates to ensure the intervention mechanism reflects the completion status.
 
 By doing so, users regain access to their apps, reinforcing positive behavior and habit formation.
 
@@ -247,73 +248,60 @@ WellspentSDK.shared.completeDailyHabit()
 
 ## Customization
 
-#### Theming 
+#### Theming
 
 To customise the colors and typography of the SDK screens, you need to create a class that conforms to `WellspentTheme` protocol. This protocol exposes the cutomisable UI elements on the SDK.
 
 You can initialize the Color values in various ways, including using hex values, named colors, RGB values etc.
 
 ```swift
-    class CustomTheme: WellspentTheme {
-        var backgroundPrimaryDark: Color {
-            Color(hex: "#F6EDE4")
-        }
+struct CustomTheme: WellspentTheme {
+   // Background colors
+   var backgroundPrimary: Color { Color("BackgroundPrimary") }
+   var backgroundSecondary: Color { Color("BackgroundSecondary") }
+   var backgroundTertiary: Color { Color("BackgroundTertiary") }
+   var backgroundShield: Color { Color("BackgroundShield") }
 
-        var backgroundPrimaryLight: Color {
-            Color(hex: "#2D2B2A")
-        }
+   // Label colors
+   var labelPrimary: Color { Color("LabelPrimary") }
+   var labelSecondary: Color { Color("LabelSecondary") }
+   var labelTertiary: Color { Color("LabelTertiary") }
 
-        var backgroundSecondaryDark: Color {
-            Color(hex: "#C0C0A5")
-        }
+   // Button colors
+   var backgroundButton: Color { Color("BackgroundButton") }
+   var backgroundButtonDisabled: Color { Color("BackgroundButtonDisabled") }
+   var buttonLabel: Color { Color("ButtonLabel") }
+   var buttonLabelDisabled: Color { Color("ButtonLabelDisabled") }
 
-        var backgroundSecondaryLight: Color {
-            Color(hex: "#FFFFFF")
-        }
-
-        var foregroundPrimaryLight: Color {
-            Color(hex: "#F9F0E7")
-        }
-
-        var foregroundPrimaryDark: Color {
-            Color(hex: "#E2DCD5")
-        }
-
-        var foregroundSecondaryLight: Color {
-            Color(hex: "#2CC05C")
-        }
-
-        var title: Font {
-            CustomFont.bold(with: 32)
-        }
-
-        var subtitle: Font {
-            CustomFont.bold(with: 20)
-        }
-
-        var body: Font {
-            CustomFont.bold(with: 16)
-        }
-
-        var footnote: Font {
-            CustomFont.medium(with: 12)
-        }
-    }
+   // Other colors
+   var fills: Color { Color("Fills") }
+}
 ```
 
-After implementing the custom theme, it can be applied using the following snippet
+#### Use Asset Catalog Colors for Light and Dark Mode
+For automatic support of both light and dark mode, define your colors in an Asset Catalog:
+
+1. Open your Asset Catalog (Assets.xcassets)
+2. Create a new Color Set for each theme color (e.g., "BackgroundPrimary")
+3. Select the Color Set and enable "Any, Dark" appearance in the Attributes Inspector
+4. Set different colors for light and dark appearances
+
+#### After implementing the custom theme, it can be applied in two ways:
+
+During SDK configuration:
 
 ```swift
-    Wellspent.apply(CustomTheme())
+  let result = await Wellspent.shared.configure(
+    properties: WellspentSDKProperties(
+        // Your configuration properties
+    ),
+    theme: CustomTheme(),
+    trackingHandler: trackingHandler
+)
 ```
 
-#### Localization and Copy 
-
-You may override specific strings by defining new values in your own `Localizable.strings` file. The full list of string resources that can be overridden is available.
-
-Once you have your translated strings defined, you can apply them by calling `Wellspent.apply()` with an instance of `WellspentLocalizableStrings`. `WellspentLocalizableStrings` requires the bundle and tablename of your strings.
+After configuration, using the apply method:
 
 ```swift
-let localizableStrings = WellspentLocalizableStrings(bundle: Bundle.main, tableName: "Localizable")
-Wellspent.apply(localizableStrings)
+    Wellspent.shared.apply(theme: CustomTheme())
 ```
