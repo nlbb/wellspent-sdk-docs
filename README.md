@@ -91,7 +91,7 @@ Add an app group with to all extension targets and your main app.
 > The Wellspent SDK will not work without the app extensions and their respective app groups
 > capability being set up. The app group name must be added to the `Info.plist` for every extension target.
 
-## Request FamilyControls Entitlement(for distribution)
+## Request FamilyControls Entitlement (for distribution)
 
 With the app extensions created, request for the Family Controls Entitlement (Distribution) from Apple. This is neccessary to go live in the App Store but not a requirement for local development.
 It's preferable to request the entitlement soon after creating the app extensions.
